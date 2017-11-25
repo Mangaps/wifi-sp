@@ -5,8 +5,8 @@ layout: none
 	"instalacao": "{{post.instalacao}}",
 	"zona": "{{post.zona}}",
 	"bairro": "{{post.bairro}}",
-	"latitude": "{{post.latitude}}",
-	"longitude": "{{post.longitude}}",
+	"latitude": {{post.latitude}},
+	"longitude": {{post.longitude}},
 	"praca": "{{ post.praca}}",
 	"endereco": "{{post.endereco}}",
 	"capacidade": {{post.capacidade}}

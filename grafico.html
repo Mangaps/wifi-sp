@@ -29,7 +29,7 @@ layout: grafico
             $.ajax({
                 'async': false,
                 'global': false,
-                'url': 'https://raw.githubusercontent.com/voltdatalab/wifi-sp/gh-pages/dados.json',
+                'url': 'https://voltdatalab.github.io/wifi-sp/output.json',
                 'dataType': "json",
                 'success': function (data) {
                     json = data;
@@ -46,32 +46,28 @@ layout: grafico
         .type("tree_map")
         //.type({"mode": "dice"})
         .id({
-          "value": ["zona","bairro"]
+          "value": ["zona","bairro","praca"]
         })
         .title({
-        "value": "",
-        "total": {
-          "font": {
-            "size": 16,
-          },
-          "value": true
-        },
-        "sub": {
-          "font": {
-            "size": 6
-          }
-
-        }
-      })
+        "value": "Capacidade de praças de wifi público em São Paulo",
+        "total": { "font": { "size": 16,}, "value": true },
+        "sub": { "font": { "size": 20 }} })
+      .legend({"order": { "sort": "asc", "value": "capacidade" },
+     "size": 20,
+     "filters": "true",
+     "value": "capacidade",
+      "font": {
+      "size": "10px"
+        }})
         .size("capacidade")
         .format("pt_BR")
         .margin( "10px 10px" )
         .footer({
           "link": "",
-          "value": "Fonte: Prefeitura"
+          "value": "Fonte: Prefeitura de São Paulo"
         })
         .tooltip({"value": "model","background":"#f4f4f4"})
       .labels({"align": "center", "valign": "top", "padding": 50, "resize": false})
       .tooltip(["zona", "bairro", "praca", "capacidade"])
-        .draw();
+      .draw();
     </script>
