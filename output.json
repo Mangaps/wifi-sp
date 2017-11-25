@@ -2,10 +2,12 @@
 layout: none
 ---
 [{% for post in site.posts %}{
-	"company-name": "{{post.company-name}}",
-	"city": "{{post.city}}",
-	"state": "{{post.state}}",
-	"employees": "{{post.employees}}",
-	"tags": "{{ post.tags | array_to_sentence_string }}",
-	"categories": "{{post.categories}}"
+	"instalacao": "{{post.instalacao}}",
+	"zona": "{{post.zona}}",
+	"bairro": "{{post.bairro}}",
+	"latitude": "{{post.latitude}}",
+	"longitude": "{{post.longitude}}",
+	"praca": "{{ post.praca}}",
+	"endereco": "{{post.endereco}}",
+	"capacidade": "{{post.capacidade}}"
 }{% if forloop.rindex0 > 0 %},{% endif %}{% endfor %}]
