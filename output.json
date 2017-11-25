@@ -9,5 +9,5 @@ layout: none
 	"longitude": "{{post.longitude}}",
 	"praca": "{{ post.praca}}",
 	"endereco": "{{post.endereco}}",
-	"capacidade": "{{post.capacidade}}"
+	"capacidade": {{post.capacidade}}
 }{% if forloop.rindex0 > 0 %},{% endif %}{% endfor %}]

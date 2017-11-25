@@ -1,58 +1,77 @@
 ---
 layout: grafico
 ---
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
-<script>
-var visualization = d3plus.viz()
-    .container("#grafico")
-    .data(json)
-    .height({"max": 700, "value":600})
-    .type("tree_map")
-    //.type({"mode": "dice"})
-    .id({
-      "value": ["zona","bairro"]
-    })
-    .title({
-    "value": "",
-    "total": {
-      "font": {
-        "size": 16,
-      },
-      "value": true
-    },
-    "sub": {
-      "font": {
-        "size": 6
-      }
+      <style>
 
-    }
-  })
-    .legend({"order":
-             {
-      "sort": "asc",
-      "value": "tipo"
-    },
-       "size": 20,
-       "filters": "true",
-       "value": "zona",
-        "font": {
-        "size": "10px"
-      }
-           })
-    //.color({"scale": ['#777','#faa61a'], "value": "tipo"})
-    .size("capacidade")
-    .format("pt_BR")
-    .margin( "10px 10px" )
-    .footer({
-      "link": "http://www.prefeitura.sp.gov.br/cidade/secretarias/upload/chamadas/120_pracas_1375458668.pdf",
-      "value": "Fonte: Wi-Fi Livre SP/Prefeitura"
-    })
-    .tooltip({"value": "model","background":"#f4f4f4"})
-    .font({"family": "Source Sans Pro", "size": 14})
-  .depth(1)
-  .labels({"align": "center", "valign": "top", "padding": 50, "resize": false})
-  .time({"value": "date"})
-  .tooltip(["zona", "bairro", "praca", "capacidade"])
-  .draw();
+        body {
+          margin: 0;
+          overflow: hidden;
+        }
 
-</script>
+      </style>
+
+    </head>
+
+    <body>
+        <div id="grafico"></div>
+    </body>
+
+    <script>
+
+    //baseado em https://d3plus.org/examples/advanced/a9a9ada6101818be4fdc/
+
+    var json = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': 'https://raw.githubusercontent.com/voltdatalab/wifi-sp/gh-pages/dados.json',
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })
+        ();
+
+
+      var visualization = d3plus.viz()
+        .container("#grafico")
+        .data(json)
+        .type("tree_map")
+        //.type({"mode": "dice"})
+        .id({
+          "value": ["zona","bairro"]
+        })
+        .title({
+        "value": "",
+        "total": {
+          "font": {
+            "size": 16,
+          },
+          "value": true
+        },
+        "sub": {
+          "font": {
+            "size": 6
+          }
+
+        }
+      })
+        .size("capacidade")
+        .format("pt_BR")
+        .margin( "10px 10px" )
+        .footer({
+          "link": "",
+          "value": "Fonte: Prefeitura"
+        })
+        .tooltip({"value": "model","background":"#f4f4f4"})
+      .labels({"align": "center", "valign": "top", "padding": 50, "resize": false})
+      .tooltip(["zona", "bairro", "praca", "capacidade"])
+        .draw();
+    </script>
