@@ -2,12 +2,7 @@
 layout: none
 ---
 [{% for post in site.posts %}{
-	"instalacao": "{{post.instalacao}}",
-	"zona": "{{post.zona}}",
-	"bairro": "{{post.bairro}}",
-	"latitude": {{post.latitude}},
-	"longitude": {{post.longitude}},
-	"praca": "{{ post.praca}}",
-	"endereco": "{{post.endereco}}",
-	"capacidade": {{post.capacidade}}
+	"lanchonete": "{{post.lanchonete}}",
+	"preco": {{post.preco}},
+	"produto": "{{post.produto}}"
 }{% if forloop.rindex0 > 0 %},{% endif %}{% endfor %}]

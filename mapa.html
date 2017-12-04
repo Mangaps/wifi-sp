@@ -1,34 +1,45 @@
-<meta charset="utf-8">
-<script src="https://d3plus.org/js/d3plus-geomap.v0.4.full.min.js"></script>
+<!DOCTYPE html>
+<html>
 
-<style>
-
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-
-</style>
-
+<head>
+  <meta charset='utf-8'>
+  <title>Quilombox - Anistia Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <script type='text/javascript' src='javascripts/sheetsee.js'></script>
+  <link rel='stylesheet' type='text/css' href='css/style.css'>
 </head>
 
-<body></body>
+<body>
 
-<script>
+  <div id="map" style="height:500px;">Carregando mapa...</div>
 
-new d3plus.Geomap()
-  .data("https://voltdatalab.github.io/wifi-sp/output.json")
-  .groupBy("zona")
-  .colorScale("dma_code")
-  .colorScaleConfig({
-    color: ["red", "orange", "yellow", "green", "blue"]
-  })
-  .label(function(d) {
-    return d.zona + ", " + d.capacidade;
-  })
-  .point(function(d) {
-    return [d.longitude, d.latitude];
-  })
-  .render();
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var URL = '1oOHlA6gD1q0sHJefxRasVSZ9FXTUuGmZSWjGv0nOCzM'
+      //var URL = '1Ifms8godQiSHXUYzNsdpyrYm4rE_acshmHA4xDhphkQ'
+      Tabletop.init({
+        key: URL,
+        callback: showInfo,
+        simpleSheet: true
+      })
+    })
 
-</script>
+    function showInfo(data) {
+      console.log(data)
+      var popup = "<div style='padding:1px;background-color:#f4f4f4;text-align:center;border-radius:5px;'></div>"
+      var mapOptions = {
+        data: data,
+        cluster: true,
+        mapDiv: 'map',
+        geoJSONincludes: ['instalacao',	'zona',	'bairro', 'local',	'praca','endereco', 'capacidade'],
+        template: popup
+      }
+      var logoContainer = document.getElementById("logoContainer");
+      Sheetsee.loadMap(mapOptions)
+    }
+  </script>
+</body>
+
+</html>
